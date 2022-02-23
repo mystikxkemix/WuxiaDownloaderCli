@@ -2,7 +2,7 @@ import prompts from 'prompts'
 import { Book, Novel } from '../Parser/baseParser'
 
 type BookPromptReponse = {
-    bookChoosed: Book[]
+    booksChoosed: Book[]
 }
 
 const askForBooks = async (novel: Novel): Promise<Book[]> => {
@@ -23,6 +23,6 @@ const askForBooks = async (novel: Novel): Promise<Book[]> => {
 }
 
 export default async (novel: Novel): Promise<BookPromptReponse> => {
-    var bookChoosed = await askForBooks(novel)
-    return { bookChoosed }
+    var booksChoosed = await askForBooks(novel)
+    return { booksChoosed }
 }

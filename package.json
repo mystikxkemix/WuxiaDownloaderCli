@@ -4,7 +4,7 @@
     "main": "dist/index.js",
     "scripts": {
         "start": "npm run build && node dist/index.js",
-        "build": "tsc"
+        "build": "rm -rf ./dist || echo 1 && tsc"
     },
     "bin": {
         "novelDownloader": "dist/src/cli.js"
