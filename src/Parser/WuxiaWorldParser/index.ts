@@ -1,4 +1,5 @@
-import BaseParser, { Novel } from './baseParser'
+import BaseParser, { Novel } from '../baseParser'
+import parseUrl from './parseUrl'
 
 const fakeNovel: Novel = {
     title: 'toto',
@@ -28,15 +29,15 @@ const fakeNovel: Novel = {
 
 export default class WuxiaWorldParser implements BaseParser {
     public websiteName: string = 'WuxiaWorld'
-    parseUrl(url: string): Promise<Novel> {
-        return Promise.resolve(fakeNovel)
+    async parseUrl(url: string): Promise<Novel> {
+        var novelData = await parseUrl(url)
+        return Promise.resolve(novelData as Novel)
     }
 
     prepareWebsite(): Promise<any> {
         return Promise.resolve()
     }
     parseCover(): Promise<any> {
-        console.log('toto')
         return Promise.resolve()
     }
 }

@@ -12,7 +12,8 @@ export type Book = {
 
 export type Chapter = {
     title: string
-    content: string
+    url?: string
+    content?: string
 }
 
 const fakeNovel: Novel = {
