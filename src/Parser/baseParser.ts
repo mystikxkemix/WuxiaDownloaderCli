@@ -29,6 +29,5 @@ const fakeNovel: Novel = {
 export default interface BaseParser {
     websiteName: string
     parseUrl: (url: string) => Promise<Novel>
-    prepareWebsite: () => Promise<any>
-    parseCover: () => Promise<any>
+    parseChapters: (novel: Novel) => Promise<Novel>
 }
