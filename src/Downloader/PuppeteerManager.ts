@@ -25,7 +25,7 @@ export class PuppeteerClient {
 }
 
 const defaultOptions: PuppeteerManagerOptions = {
-    instanceNumber: 5,
+    instanceNumber: 10,
 }
 
 class Waiting {
