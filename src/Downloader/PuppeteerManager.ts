@@ -7,7 +7,7 @@ export type PuppeteerManagerOptions = {
 export class PuppeteerClient {
     private browser: Browser | undefined = undefined
 
-    public async newPage(url: string): Promise<Page> {
+    public async newPage(): Promise<Page> {
         if (this.browser === undefined) throw 'No browser instance'
         return this.browser.newPage()
     }
@@ -25,7 +25,7 @@ export class PuppeteerClient {
 }
 
 const defaultOptions: PuppeteerManagerOptions = {
-    instanceNumber: 10,
+    instanceNumber: 5,
 }
 
 class Waiting {

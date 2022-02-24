@@ -13,7 +13,11 @@ export default class WuxiaWorldParser implements BaseParser {
         return Promise.resolve(novelData as Novel)
     }
 
-    async parseChapters(novel: Novel, booksChoosed: Book[]): Promise<Book[]> {
-        return parseChapters(novel, booksChoosed)
+    async parseChapters(
+        novel: Novel,
+        booksChoosed: Book[],
+        progressTick: () => void
+    ): Promise<Book[]> {
+        return parseChapters(novel, booksChoosed, progressTick)
     }
 }

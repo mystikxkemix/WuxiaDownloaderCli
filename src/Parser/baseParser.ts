@@ -33,5 +33,9 @@ export default interface BaseParser {
         url: string,
         progressTick: (tick: number) => void
     ) => Promise<Novel>
-    parseChapters: (novel: Novel, booksChoosed: Book[]) => Promise<Book[]>
+    parseChapters: (
+        novel: Novel,
+        booksChoosed: Book[],
+        progressTick: () => void
+    ) => Promise<Book[]>
 }
