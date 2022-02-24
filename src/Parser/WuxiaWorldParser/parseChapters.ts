@@ -1,5 +1,5 @@
-import { Novel } from '../baseParser'
+import { Novel, Book } from '../baseParser'
 
-export default async (novel: Novel): Promise<Novel> => {
-    return novel
+export default async (novel: Novel, booksChoosed: Book[]): Promise<Book[]> => {
+    return booksChoosed
 }

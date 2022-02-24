@@ -2,12 +2,14 @@ import puppeteer from 'puppeteer'
 
 export type ParseUrlResponse = {}
 
-export default async (url: string) => {
+export default async (url: string, progressTick: (tick: number) => void) => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto(url)
+    progressTick(10)
     await page.click('button.fc-cta-consent', { delay: 0.5 })
     await page.click('#full-width-tab-1', { delay: 0.5 })
+    progressTick(10)
     // Open sections
     await page.evaluate(() => {
         var list = document.getElementsByClassName('MuiPaper-root')
@@ -27,13 +29,16 @@ export default async (url: string) => {
 
         return returnList
     })
+    progressTick(10)
 
     await page.waitForTimeout(2000)
+    progressTick(10)
 
     var novelTitle = await page.evaluate(() => {
         return (document.querySelector('h1.MuiTypography-root') as HTMLElement)
             .innerText
     })
+    progressTick(10)
 
     var novelCover = await page.evaluate(() => {
         var imgs = document.getElementsByTagName('img')
@@ -51,6 +56,7 @@ export default async (url: string) => {
             }
         }
     })
+    progressTick(20)
 
     var bookElements = await page.evaluate(() => {
         var list = document.getElementsByClassName('MuiPaper-root')
@@ -83,7 +89,9 @@ export default async (url: string) => {
 
         return returnList
     })
+    progressTick(20)
 
     await browser.close()
+    progressTick(10)
     return { title: novelTitle, books: bookElements, cover: novelCover }
 }
