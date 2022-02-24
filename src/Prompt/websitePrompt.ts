@@ -34,6 +34,7 @@ const askForWebsite = async (): Promise<BaseParser> => {
 }
 
 const askForUrl = async (websiteName: string): Promise<string> => {
+    return 'https://www.wuxiaworld.com/novel/against-the-gods'
     var response = await prompts({
         type: 'text',
         name: 'url',

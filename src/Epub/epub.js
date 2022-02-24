@@ -16,13 +16,17 @@ const test = () => {
     }
 }
 
-const exportEpub = (title, author, publisher, output, content) => {
-    const options = {
+const exportEpub = (title, author, publisher, cover, output, content) => {
+    let options = {
         title,
         author,
         publisher,
         content,
         output: './outputs/' + output,
+    }
+
+    if (cover) {
+        options.cover = cover
     }
 
     return new epub(options).promise

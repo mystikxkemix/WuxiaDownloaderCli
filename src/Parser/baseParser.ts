@@ -2,6 +2,7 @@ import { Puppeteer } from 'puppeteer'
 
 export type Novel = {
     title: string
+    cover?: string
     books: Book[]
 }
 

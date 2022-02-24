@@ -10,6 +10,7 @@ const exportBook = async (
         bookChoosed.title,
         novel.title,
         parser.websiteName,
+        novel.cover,
         `${novel.title} - ${bookChoosed.title}.epub`,
         bookChoosed.chapters?.map((chapter) => {
             return { title: chapter.title, data: chapter.content }

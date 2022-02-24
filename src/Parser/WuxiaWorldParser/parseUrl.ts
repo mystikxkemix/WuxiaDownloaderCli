@@ -35,6 +35,23 @@ export default async (url: string) => {
             .innerText
     })
 
+    var novelCover = await page.evaluate(() => {
+        var imgs = document.getElementsByTagName('img')
+        for (var img of imgs) {
+            const src = img.getAttribute('src')
+            if (!src) continue
+            if (src.indexOf('https://cdn.wuxiaworld.com/images/covers') > 0) {
+                const matches =
+                    src.match(
+                        /(https:\/\/cdn\.wuxiaworld\.com\/images\/covers\/.*\.(?:jpg|png))/gm
+                    ) || []
+                if (matches.length > 0) {
+                    return matches[0]
+                }
+            }
+        }
+    })
+
     var bookElements = await page.evaluate(() => {
         var list = document.getElementsByClassName('MuiPaper-root')
         const returnList: any[] = []
@@ -68,5 +85,5 @@ export default async (url: string) => {
     })
 
     await browser.close()
-    return { title: novelTitle, books: bookElements }
+    return { title: novelTitle, books: bookElements, cover: novelCover }
 }
