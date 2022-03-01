@@ -13,6 +13,8 @@ async function parseChapter(
 
     var result = await page.evaluate(() => {
         var contents = document.getElementsByClassName('chapter-content')
+        var test = (contents[0] as HTMLElement).querySelectorAll('*')
+        test.forEach((e) => e.removeAttribute('style'))
         return (contents[0] as HTMLElement).innerHTML
     })
 
@@ -26,6 +28,7 @@ export default async (
     booksChoosed: Book[],
     progressTick: () => void
 ): Promise<Book[]> => {
+    // await parseChapter(booksChoosed[0].chapters![0], progressTick)
     var promises: Promise<void>[] = []
     for (var bookChoosed of booksChoosed) {
         if (!bookChoosed.chapters) continue
