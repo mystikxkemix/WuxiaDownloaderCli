@@ -1,9 +1,11 @@
-import puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer-extra'
+import StealthPlugin from 'puppeteer-extra-plugin-stealth'
+puppeteer.use(StealthPlugin())
 
 export type ParseUrlResponse = {}
 
 export default async (url: string, progressTick: (tick: number) => void) => {
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch({ headless: true })
     const page = await browser.newPage()
     await page.goto(url)
     progressTick(10)

@@ -5,7 +5,8 @@
     "scripts": {
         "start": "npm run build && node dist/index.js",
         "test": "npm run build && node dist/test.js",
-        "build": "rm -rf ./dist || echo 1 && tsc"
+        "build": "rm -rf ./dist || echo 1 && tsc",
+        "link": "npm run build && npm link"
     },
     "bin": {
         "novelDownloader": "dist/src/cli.js"
@@ -19,6 +20,8 @@
         "epub-gen": "^0.1.0",
         "progress": "^2.0.3",
         "prompts": "^2.4.2",
-        "puppeteer": "^13.4.0"
+        "puppeteer": "^13.7.0",
+        "puppeteer-extra": "^3.3.4",
+        "puppeteer-extra-plugin-stealth": "^2.11.1"
     }
 }

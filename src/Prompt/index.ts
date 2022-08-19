@@ -47,11 +47,14 @@ const getChaptersParseBar = (booksChoosed: Book[]) => {
 
 export default async () => {
     const { parser, novelUrl } = await websitePrompt()
+    if (!novelUrl || !novelUrl.startsWith('http')) return
+
     const { urlParseBar, urlBarTick } = getUrlParseBar()
     var novel = await parser.parseUrl(novelUrl, urlBarTick)
     urlParseBar.terminate()
 
     var { booksChoosed } = await bookPrompt(novel)
+    if (!booksChoosed || booksChoosed.length === 0) return
 
     const { chaptersParseBar, chaptersBarTick } =
         getChaptersParseBar(booksChoosed)

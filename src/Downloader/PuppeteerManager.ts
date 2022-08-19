@@ -1,4 +1,7 @@
-import puppeteer, { Browser, Page } from 'puppeteer'
+import { Browser, Page } from 'puppeteer'
+import puppeteer from 'puppeteer-extra'
+import StealthPlugin from 'puppeteer-extra-plugin-stealth'
+puppeteer.use(StealthPlugin())
 
 export type PuppeteerManagerOptions = {
     instanceNumber: number
@@ -13,7 +16,9 @@ export class PuppeteerClient {
     }
 
     async init() {
-        this.browser = await puppeteer.launch({headless: false})
+        await puppeteer
+            .launch({ headless: true })
+            .then((browser) => (this.browser = browser))
     }
 
     async close(): Promise<void> {
