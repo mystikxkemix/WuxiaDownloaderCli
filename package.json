@@ -4,6 +4,7 @@
     "main": "dist/index.js",
     "scripts": {
         "start": "npm run build && node dist/index.js",
+        "test": "npm run build && node dist/test.js",
         "build": "rm -rf ./dist || echo 1 && tsc"
     },
     "bin": {
