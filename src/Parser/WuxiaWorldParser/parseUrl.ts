@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer'
 export type ParseUrlResponse = {}
 
 export default async (url: string, progressTick: (tick: number) => void) => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ headless: false })
     const page = await browser.newPage()
     await page.goto(url)
     progressTick(10)

@@ -13,7 +13,7 @@ export class PuppeteerClient {
     }
 
     async init() {
-        this.browser = await puppeteer.launch()
+        this.browser = await puppeteer.launch({headless: false})
     }
 
     async close(): Promise<void> {
