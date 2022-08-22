@@ -1,3 +1,15 @@
-import parseUrl from "./Parser/WuxiaWorldParser/parseUrl";
+import parseUrl from './Parser/WuxiaWorldEuParser/parseUrl'
+import parseChapters from './Parser/WuxiaWorldEuParser/parseChapters'
 
-parseUrl("https://www.wuxiaworld.com/novel/return-of-the-disaster-class-hero", () => {}).then((res) => console.log(res));
+parseUrl(
+    'https://www.wuxiaworld.eu/novel/omniscient-readers-viewpoint',
+    () => {}
+)
+    .then((res) => {
+        console.log(res)
+
+        return parseChapters(res, res.books, () => {})
+    })
+    .then((res) => {
+        console.log(res)
+    })
