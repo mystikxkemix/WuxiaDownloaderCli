@@ -27,8 +27,6 @@ export default async function parseUrl(
         url: link.href,
     }))
 
-    console.log(chapters)
-
     progressTick(100)
 
     return {
