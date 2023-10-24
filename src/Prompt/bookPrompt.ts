@@ -8,6 +8,10 @@ type BookPromptReponse = {
 const askForBooks = async (novel: Novel): Promise<Book[]> => {
     const choices: any = []
 
+    if (!novel.books) throw new Error('No books found')
+    if (novel.books.length === 0) throw new Error('No books found')
+    if (novel.books.length === 1) return Promise.resolve(novel.books)
+
     for (var book of novel.books) {
         choices.push({ title: book.title, value: book })
     }

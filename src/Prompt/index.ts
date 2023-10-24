@@ -25,16 +25,19 @@ const getUrlParseBar = () => {
 }
 
 const getChaptersParseBar = (booksChoosed: Book[]) => {
-    var chaptersParseBar = new ProgressBar('Parsing chapters :percent [:bar]', {
-        complete: '#',
-        incomplete: '-',
-        total: 100,
-    })
+    const chaptersParseBar = new ProgressBar(
+        'Parsing chapters :percent [:bar]',
+        {
+            complete: '#',
+            incomplete: '-',
+            total: 100,
+        }
+    )
 
     chaptersParseBar.tick(0)
     let totalChapters = 0
-    for (var bookChoosed of booksChoosed) {
-        totalChapters += bookChoosed.chapters?.length || 0
+    for (const bookChoosed of booksChoosed) {
+        totalChapters += bookChoosed.chapters?.length ?? 0
     }
 
     return {
@@ -47,13 +50,13 @@ const getChaptersParseBar = (booksChoosed: Book[]) => {
 
 export default async () => {
     const { parser, novelUrl } = await websitePrompt()
-    if (!novelUrl || !novelUrl.startsWith('http')) return
+    if (!novelUrl?.startsWith('http')) return
 
     const { urlParseBar, urlBarTick } = getUrlParseBar()
-    var novel = await parser.parseUrl(novelUrl, urlBarTick)
+    const novel = await parser.parseUrl(novelUrl, urlBarTick)
     urlParseBar.terminate()
 
-    var { booksChoosed } = await bookPrompt(novel)
+    let { booksChoosed } = await bookPrompt(novel)
     if (!booksChoosed || booksChoosed.length === 0) return
 
     const { chaptersParseBar, chaptersBarTick } =
@@ -64,6 +67,7 @@ export default async () => {
         booksChoosed,
         chaptersBarTick
     )
+
     chaptersParseBar.terminate()
 
     await Epub.exportBooks(parser, novel, booksChoosed)

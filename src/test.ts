@@ -1,15 +1,12 @@
-import parseUrl from './Parser/WuxiaWorldEuParser/parseUrl'
-import parseChapters from './Parser/WuxiaWorldEuParser/parseChapters'
+import parseChapters from './Parser/ChireadsParser/parseChapters'
+import parseUrl from './Parser/ChireadsParser/parseUrl'
+;(async () => {
+    const novel = await parseUrl(
+        'https://chireads.com/category/translatedtales/eminence-des-ombres/',
+        () => {}
+    )
 
-parseUrl(
-    'https://www.wuxiaworld.eu/novel/omniscient-readers-viewpoint',
-    () => {}
-)
-    .then((res) => {
-        //console.log(res)
+    const toto = await parseChapters(novel, novel.books, () => {})
 
-        return parseChapters(res, res.books, () => {})
-    })
-    .then((res) => {
-        //console.log(res)
-    })
+    console.log(toto?.[0].chapters?.[0])
+})()
