@@ -6,7 +6,7 @@ import parseUrl from './Parser/ChireadsParser/parseUrl'
         () => {}
     )
 
-    const toto = await parseChapters(novel, novel.books, () => {})
+    // const toto = await parseChapters(novel, novel.books, () => {})
 
-    console.log(toto?.[0].chapters?.[0])
+    // console.log(toto?.[0].chapters?.[0])
 })()
