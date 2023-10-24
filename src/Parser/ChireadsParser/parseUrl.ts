@@ -13,8 +13,16 @@ export default async function parseUrl(
         'inform-title font-color-black3'
     )
 
+    const images = dom.window.document.getElementsByClassName('inform-product')
+    let urlIcon: string | undefined = undefined
+    if (images.length >= 1) {
+        urlIcon = images[0].getElementsByTagName('img')[0].src
+    }
+
     const links: HTMLAnchorElement[] = []
-    const rawLinks = dom.window.document.getElementsByTagName('a')
+    const chapterDiv = dom.window.document.getElementsByClassName('chapitre')
+
+    const rawLinks = chapterDiv[0].getElementsByTagName('a')
 
     for (const rawLink of rawLinks) {
         if (rawLink.textContent?.includes('Chapitre')) {
@@ -30,10 +38,13 @@ export default async function parseUrl(
     progressTick(100)
 
     return {
-        title: titles[0].textContent!,
+        title: titles[0]
+            .textContent!.replace(/[^\w\s|]/g, '')
+            .replace(/É/, 'E'),
+        cover: urlIcon,
         books: [
             {
-                title: 'book1',
+                title: 'story',
                 chapters: chapters,
             },
         ],
